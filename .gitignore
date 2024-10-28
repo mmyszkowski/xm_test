@@ -1,0 +1,7 @@
+.idea
+.pytest_cache
+__pycache__
+.venv
+api/__pycache__
+tests/__pycache__
+ws_client/__pycache__

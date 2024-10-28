@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.12.7 on win32)" generated="2024-10-28T18:48:23.173575" rpa="false" schemaversion="5">
+<suite id="s1" name="Test Api" source="C:\Users\myszk\PycharmProjects\xm_test\tests\robot\test_api.robot">
+<test id="s1-t1" name="Create Order" line="7">
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-10-28T18:48:27.975254" level="FAIL">ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /orders (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001B79250DFA0&gt;: Failed to establish a new connection: [WinError 10061] Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia'))</msg>
+<var>${response}</var>
+<arg>${BASE_URL}</arg>
+<doc>Sends a POST request.</doc>
+<status status="FAIL" start="2024-10-28T18:48:23.877513" elapsed="4.104716">ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /orders (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001B79250DFA0&gt;: Failed to establish a new connection: [WinError 10061] Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia'))</status>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:27.983233" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:27.983233" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${order_id}</var>
+<arg>${response.json()}</arg>
+<arg>orderId</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:27.983233" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${status}</var>
+<arg>${response.json()}</arg>
+<arg>status</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:27.984242" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${status}</arg>
+<arg>EXECUTED</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:27.984690" elapsed="0.000000"/>
+</kw>
+<doc>Test creating a new order</doc>
+<status status="FAIL" start="2024-10-28T18:48:23.876497" elapsed="4.108536">ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /orders (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001B79250DFA0&gt;: Failed to establish a new connection: [WinError 10061] Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia'))</status>
+</test>
+<test id="s1-t2" name="Get Single Order" line="16">
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-10-28T18:48:32.067102" level="FAIL">ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /orders (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001B7925A96D0&gt;: Failed to establish a new connection: [WinError 10061] Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia'))</msg>
+<var>${response}</var>
+<arg>${BASE_URL}</arg>
+<doc>Sends a POST request.</doc>
+<status status="FAIL" start="2024-10-28T18:48:27.986347" elapsed="4.083764">ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /orders (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001B7925A96D0&gt;: Failed to establish a new connection: [WinError 10061] Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia'))</status>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${order_id}</var>
+<arg>${response.json()}</arg>
+<arg>orderId</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:32.070111" elapsed="0.000000"/>
+</kw>
+<kw name="GET" owner="RequestsLibrary">
+<var>${single_response}</var>
+<arg>${BASE_URL}/${order_id}</arg>
+<doc>Sends a GET request.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:32.070111" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${single_response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:32.071119" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${single_response.json()}</arg>
+<arg>id</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:32.071119" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${single_response.json()}</arg>
+<arg>status</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:32.071119" elapsed="0.000985"/>
+</kw>
+<doc>Test retrieving a single order</doc>
+<status status="FAIL" start="2024-10-28T18:48:27.985334" elapsed="4.086770">ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /orders (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001B7925A96D0&gt;: Failed to establish a new connection: [WinError 10061] Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia'))</status>
+</test>
+<test id="s1-t3" name="Get All Orders" line="25">
+<kw name="Create Multiple Orders And Return IDs" owner="keywords">
+<kw name="Create List" owner="BuiltIn">
+<msg time="2024-10-28T18:48:32.075105" level="INFO">${ids} = []</msg>
+<var>${ids}</var>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2024-10-28T18:48:32.075105" elapsed="0.000000"/>
+</kw>
+<for flavor="IN RANGE">
+<iter>
+<kw name="Create New Order And Return ID" owner="keywords">
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-10-28T18:48:36.150254" level="FAIL">ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /orders (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001B7925AB6E0&gt;: Failed to establish a new connection: [WinError 10061] Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia'))</msg>
+<var>${response}</var>
+<arg>${BASE_URL}</arg>
+<doc>Sends a POST request.</doc>
+<status status="FAIL" start="2024-10-28T18:48:32.076104" elapsed="4.077176">ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /orders (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001B7925AB6E0&gt;: Failed to establish a new connection: [WinError 10061] Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia'))</status>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:36.153280" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${order_id}</var>
+<arg>${response.json()}</arg>
+<arg>orderId</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:36.153280" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>${order_id}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:36.154280" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${order_id}</value>
+<status status="NOT RUN" start="2024-10-28T18:48:36.154280" elapsed="0.000000"/>
+</return>
+<var>${order_id}</var>
+<status status="FAIL" start="2024-10-28T18:48:32.075105" elapsed="4.079175">ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /orders (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001B7925AB6E0&gt;: Failed to establish a new connection: [WinError 10061] Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia'))</status>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${ids}</arg>
+<arg>${order_id}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:36.154280" elapsed="0.000000"/>
+</kw>
+<var name="${index}">0</var>
+<status status="FAIL" start="2024-10-28T18:48:32.075105" elapsed="4.079175">ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /orders (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001B7925AB6E0&gt;: Failed to establish a new connection: [WinError 10061] Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia'))</status>
+</iter>
+<var>${index}</var>
+<value>${count}</value>
+<status status="FAIL" start="2024-10-28T18:48:32.075105" elapsed="4.080175">ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /orders (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001B7925AB6E0&gt;: Failed to establish a new connection: [WinError 10061] Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia'))</status>
+</for>
+<return>
+<value>${ids}</value>
+<status status="NOT RUN" start="2024-10-28T18:48:36.155280" elapsed="0.000000"/>
+</return>
+<var>${order_ids}</var>
+<arg>3</arg>
+<status status="FAIL" start="2024-10-28T18:48:32.074103" elapsed="4.081177">ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /orders (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001B7925AB6E0&gt;: Failed to establish a new connection: [WinError 10061] Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia'))</status>
+</kw>
+<kw name="GET" owner="RequestsLibrary">
+<var>${response}</var>
+<arg>${BASE_URL}</arg>
+<doc>Sends a GET request.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:36.155280" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:36.156304" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:36.156304" elapsed="0.000000"/>
+</kw>
+<kw name="Get Order IDs From Response" owner="keywords">
+<var>${response_ids}</var>
+<arg>${response.json()}</arg>
+<status status="NOT RUN" start="2024-10-28T18:48:36.157269" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain Values" owner="keywords">
+<arg>${response_ids}</arg>
+<arg>${order_ids}</arg>
+<status status="NOT RUN" start="2024-10-28T18:48:36.157269" elapsed="0.001011"/>
+</kw>
+<doc>Test retrieving all orders</doc>
+<status status="FAIL" start="2024-10-28T18:48:32.073114" elapsed="4.085166">ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /orders (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001B7925AB6E0&gt;: Failed to establish a new connection: [WinError 10061] Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia'))</status>
+</test>
+<test id="s1-t4" name="Cancel Order" line="34">
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-10-28T18:48:40.236912" level="FAIL">ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /orders (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001B7925AB9B0&gt;: Failed to establish a new connection: [WinError 10061] Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia'))</msg>
+<var>${response}</var>
+<arg>${BASE_URL}</arg>
+<doc>Sends a POST request.</doc>
+<status status="FAIL" start="2024-10-28T18:48:36.160495" elapsed="4.079395">ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /orders (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001B7925AB9B0&gt;: Failed to establish a new connection: [WinError 10061] Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia'))</status>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${order_id}</var>
+<arg>${response.json()}</arg>
+<arg>orderId</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:40.240881" elapsed="0.000000"/>
+</kw>
+<kw name="DELETE" owner="RequestsLibrary">
+<var>${cancel_response}</var>
+<arg>${BASE_URL}/${order_id}</arg>
+<doc>Sends a DELETE request.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:40.240881" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${cancel_response.status_code}</arg>
+<arg>204</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="NOT RUN" start="2024-10-28T18:48:40.241890" elapsed="0.000000"/>
+</kw>
+<doc>Test cancelling an order</doc>
+<status status="FAIL" start="2024-10-28T18:48:36.159478" elapsed="4.082412">ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /orders (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000001B7925AB9B0&gt;: Failed to establish a new connection: [WinError 10061] Nie można nawiązać połączenia, ponieważ komputer docelowy aktywnie go odmawia'))</status>
+</test>
+<doc>Testsuite for API</doc>
+<status status="FAIL" start="2024-10-28T18:48:23.175576" elapsed="17.067325"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="4" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="4" skip="0" id="s1" name="Test Api">Test Api</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
