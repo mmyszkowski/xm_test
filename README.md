@@ -51,7 +51,37 @@ on Windows
 
 `python.exe .\tests\robot\run_tests.py`
 
-results are saved in /static directory and publihed on http://localhost:8000/test_results
+results are saved in /static directory and published on http://localhost:8000/test_results
+
+## Docker
+Project contains Dockerfile, that allows to start server, client and tests on separate docker containers.
+Before creating docker image you need to:
+- uncomment expected last line in accordance with expectations.
+- change BASE_URL in /robot/resources/keywords to API docker name e.g. http://api_container:8000/orders
+- change URI from 127.0.0.1 to API docker name in /ws_client/ws_client.py
+- build server:
+
+`docker build -t xm_test_server .`
+
+- build client:
+
+`docker build -t xm_test_client .`
+
+- build tests:
+
+`docker build -t xm_test_tests .`
+
+- create docker network:
+
+`docker network create xm_test_network`
+
+- run containers:
+
+`docker run --network xm_test_network --name api_container -p 8000:8000 xm_test_server`
+
+`docker run --network xm_test_network --name tests_container xm_test_tests`
+
+`docker run --network xm_test_network --name client_container xm_test_client`
 
 ## Technologies and tools
 - Python 3.12

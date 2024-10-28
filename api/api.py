@@ -23,6 +23,7 @@ async def notify_clients(order_id: int, status: str):
     for connection in active_connections:
         await connection.send_json({"orderId": order_id, "status": status})
 
+
 @app.get("/test_results", response_class=HTMLResponse)
 async def read_root():
     files = os.listdir('static')
@@ -34,19 +35,23 @@ async def get_all_orders():
     await asyncio.sleep(random.uniform(0.1, 1))
     return list(orders.values())
 
+
 @app.post("/orders")
 async def create_order():
     order_id = len(orders) + 1
     order = Order(id=order_id, status="PENDING")
     orders[order_id] = order
     await notify_clients(order_id, order.status)
-
-    await asyncio.sleep(random.uniform(3, 6))
-    # CHANGE TO
-    order.status = "EXECUTED"
-    await notify_clients(order_id, order.status)
-
+    asyncio.create_task(change_order_status_after_delay(order_id, 5))
     return {"orderId": order_id, "status": order.status}
+
+
+async def change_order_status_after_delay(order_id: int, delay: float):
+    await asyncio.sleep(delay)
+    order = orders.get(order_id)
+    if order and order.status == "PENDING":
+        order.status = "EXECUTED"
+        await notify_clients(order_id, order.status)
 
 
 @app.get("/orders/{order_id}")
